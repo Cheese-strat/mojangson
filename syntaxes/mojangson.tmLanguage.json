@@ -1,0 +1,143 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Mojangson",
+	"patterns": [
+		{
+			"include": "#values"
+		}
+	],
+	"repository": {
+		"byte": {
+			"name": "constant.numeric.byte.mojangson",
+			"match": "((?!:\\s*)|\\b)-?[0-9]{1,2}[bB]\\b"
+		},
+		"short": {
+			"name": "constant.numeric.short.mojangson",
+			"match": "((?!:\\s*)|\\b)-?[0-9]{1,5}[sS]\\b"
+		},
+		"int": {
+			"name": "constant.numeric.integer.mojangson",
+			"match": "((?!:\\s*)|\\b)-?[0-9]{1,9}\\b"
+		},
+		"long": {
+			"name": "constant.numeric.long.mojangson",
+			"match": "((?!:\\s*)|\\b)-?[0-9]{1,12}[lL]\\b"
+		},
+		"float": {
+			"name": "constant.numeric.float.mojangson",
+			"match": "((?!:\\s*)|\\b)-?[0-3]([.][0-9]{1,38})?[fF]\\b"
+		},
+		"double": {
+			"name": "constant.numeric.double.mojangson",
+			"match": "((?!:\\s*)|\\b)-?([0-3].\\d+|\\d+[Dd])\\b"
+		},
+		"string": {
+			"name": "string.quoted.double.mojangson",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"match": "\\b\".+\"\\b"
+				}
+			]
+		},
+		"list": {
+			"name": "keyword.other.list.mojangson",
+			"begin": "\\[",
+			"end": "\\]",
+			"patterns": [
+				{
+					"include": "#values"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.array.json"
+				},
+				{
+					"match": "[^\\s\\]]",
+					"name": "invalid.illegal.expected-array-separator.json"
+				}
+			]
+		},
+		"boolean": {
+			"name": "constant.language.boolean.mojangson",
+			"match": "\\b(true|false|0b|1b)\\b"
+		},
+		"values": {
+			"patterns": [
+				{
+					"include": "#boolean"
+				},
+				{
+					"include": "#byte"
+				},
+				{
+					"include": "#short"
+				},
+				{
+					"include": "#long"
+				},
+				{
+					"include": "#float"
+				},
+				{
+					"include": "#double"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#int"
+				},{
+					"include": "#list"
+				}
+				,{
+					"include": "#compound"
+				}
+			]
+		},
+		"compound": {
+			"begin": "\\{",
+			"end": "\\}",
+			"name": "meta.structure.compound.mojangson",
+			"patterns": [
+				{
+					"name": "string.unquoted.key-name.mojangson",
+			
+					"match": "\\b[a-zA-Z]+\\b"
+				
+			
+				},
+				{
+					"begin": ":",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.compound.key-value.mojangson"
+						}
+					},
+					"end": "(,)|(?=\\})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.compound.pair.mojangson"
+						}
+					},
+					"name": "meta.structure.compound.value.mojangson",
+					"patterns": [
+						{
+							"comment": "the value",
+							"include": "#values"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-compound-value-separator.mojangson"
+						}
+					]					
+				},{
+					"name":"invalid.illegal.expected-compound-separator.mojangson",
+					"match": "[^\\s\\}]"
+				}
+			]
+		}
+	},
+	"scopeName": "source.mojangson"
+}

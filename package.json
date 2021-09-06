@@ -1,0 +1,25 @@
+{
+    "name": "mojangson",
+    "displayName": "Mojangson",
+    "description": "sytax highlighting for mojangson",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "mojangson",
+            "aliases": ["Mojangson", "mojangson"],
+            "extensions": [".nbt",".txt",".mojangson"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mojangson",
+            "scopeName": "source.mojangson",
+            "path": "./syntaxes/mojangson.tmLanguage.json"
+        }]
+    }
+}
