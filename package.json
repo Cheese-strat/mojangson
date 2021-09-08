@@ -3,23 +3,48 @@
     "displayName": "Mojangson",
     "description": "sytax highlighting for mojangson",
     "version": "0.0.1",
+    "publisher": "Cheese-strat",
     "engines": {
-        "vscode": "^1.59.0"
+        "vscode": "^1.6.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Formatters"
     ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/src/extension",
     "contributes": {
-        "languages": [{
-            "id": "mojangson",
-            "aliases": ["Mojangson", "mojangson"],
-            "extensions": [".nbt",".txt",".mojangson"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "mojangson",
-            "scopeName": "source.mojangson",
-            "path": "./syntaxes/mojangson.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "mojangson",
+                "aliases": [
+                    "Mojangson"
+                ],
+                "extensions": [
+                    ".nbt",
+                    ".txt",
+                    ".mojangson"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mojangson",
+                "scopeName": "source.mojangson",
+                "path": "./syntaxes/mojangson.tmLanguage.json"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install && tsc"
+    },
+    "devDependencies": {
+        "@types/node": "*",
+        "typescript": "2.0.6",
+        "vscode": "^1.0.3",
+        "@types/vscode": "^1.60.0"
     }
 }
