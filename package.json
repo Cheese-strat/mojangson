@@ -45,6 +45,10 @@
         "@types/node": "*",
         "typescript": "2.0.6",
         "vscode": "^1.0.3",
-        "@types/vscode": "^1.60.0"
+        "@types/vscode": "^1.6.0"
+    },
+    "repository": {
+        "url": "https://github.com/Cheese-strat/mojangson.git",
+        "type": "git"
     }
 }
