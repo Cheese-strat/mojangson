@@ -12,7 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
 			let edits: vscode.TextEdit[] = [];
 			let indentation = 0;
 
-			for (let lineNum = 0; lineNum < document.lineCount - 1; lineNum++) {
+			for (
+				let lineNum = 0;
+				lineNum <= document.lineCount - 1;
+				lineNum++
+			) {
 				const currentLine = document.lineAt(lineNum);
 
 				//remove empty lines

@@ -76,7 +76,7 @@ function activate(context) {
                     }
                 });
             };
-            for (var lineNum = 0; lineNum < document.lineCount - 1; lineNum++) {
+            for (var lineNum = 0; lineNum <= document.lineCount - 1; lineNum++) {
                 _loop_1(lineNum);
             }
             //gotta iterate over the position, translating the position
