@@ -110,81 +110,12 @@ export function activate(context: vscode.ExtensionContext) {
 							vscode.TextEdit.replace(
 								rangeToReplace,
 								`\n` + "	".repeat(indentation) + value[0][0],
-								/*(document.eol === 1 ? "\n" : "\r\n") +
-									"	".repeat(indentation) +
-									value[0][0],*/
 							),
 						);
 					}
 				});
 			}
 
-			//gotta iterate over the position, translating the position
-
-			//vscode.TextEdit.insert(firstLine.range.start, "\n")
-
-			/* for (let i = 0; i < 1; i++) {
-				//if (!/[\[\]\{\},]/.test(documentText[i])) continue;
-				const pos = document.positionAt(i);
-				const space = document.getWordRangeAtPosition(
-					pos,
-					/[\,\{\[\]\}][\s\n]+/,
-				);
-
-				const indentChars = ["{", "["];
-				const unIndentChars = ["}", "]"];
-
-				if (
-					indentChars.includes(
-						document.lineAt(pos.line).text[pos.character],
-					)
-				) {
-					indentation++;
-
-					const text = document.getText(
-						new vscode.Range(
-							pos.translate(0, 1),
-							document.lineAt(document.lineCount - 1).range.end,
-						),
-					);
-					const next = text.match(/^[\s\n\r]);
-					const distance = next[0].length;
-					//just need to get the position
-					edits.push(
-						vscode.TextEdit.replace(
-							new vscode.Range(
-								pos.translate(0, 1),
-								pos.translate(0, distance),
-							),
-							"\n" + "	".repeat(indentation),
-						),
-					);
-				}
-				if (
-					document.lineAt(pos.line).text.slice(pos.character) === ","
-				) {
-					edits.push(
-						vscode.TextEdit.insert(
-							pos.translate(0, 1),
-							"\n" + "	".repeat(indentation),
-						),
-					);
-				}
-				if (
-					unIndentChars.includes(
-						document.lineAt(pos.line).text[pos.character],
-					)
-				) {
-					indentation--;
-					edits.push(
-						vscode.TextEdit.insert(
-							pos,
-							"\n" + "	".repeat(indentation),
-						),
-					);
-				}
-			}
-			 */
 			return edits;
 		},
 	});
